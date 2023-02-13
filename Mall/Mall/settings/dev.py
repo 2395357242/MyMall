@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -57,7 +57,6 @@ ROOT_URLCONF = 'Mall.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',  # jinja2模板引擎
-        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'DIRS': ['Mall/appfront/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,6 +70,20 @@ TEMPLATES = [
             'environment': 'Mall.utils.jinja2_env.jinja2_environment',
         },
     },
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # jinja2模板引擎
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+
+    }
 ]
 
 WSGI_APPLICATION = 'Mall.wsgi.application'
@@ -120,12 +133,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-# vue前端静态路径
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'appfront/dist/')
-]
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'appfront/dist/static')
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
